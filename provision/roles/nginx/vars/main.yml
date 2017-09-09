@@ -1,0 +1,8 @@
+app_name: demo
+app_user: demo
+group_user: demo
+
+app_home: /opt/webapp
+
+app_response: "OK"
+port_number: 8080

@@ -1,0 +1,7 @@
+[web]
+192.168.1.221
+192.168.1.222
+
+[haproxy]
+192.168.1.201 keepalived_state=master
+192.168.1.202 keepalived_state=

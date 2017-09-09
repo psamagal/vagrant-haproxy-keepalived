@@ -1,0 +1,4 @@
+**/*.retry
+.ssh
+.vagrant
+.idea

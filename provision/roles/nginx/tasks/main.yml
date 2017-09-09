@@ -1,0 +1,25 @@
+---
+- name: Install dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - nginx
+    - tcpdump
+    - vim
+    - htop
+  become: true
+
+- name: copy application code to destination
+  template:
+    src: "index.html"
+    dest: "/usr/share/nginx/html/index.html"
+  become: true
+  notify: restart nginx
+
+- name: Enable nginx on startup
+  service:
+    name: nginx
+    enabled: yes
+  become: true
+

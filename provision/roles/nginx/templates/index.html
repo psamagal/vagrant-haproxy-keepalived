@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+    <title>Welcome to Primary Node</title>
+    <style>
+        body {
+            width: 35em;
+            margin: 0 auto;
+            font-family: Tahoma, Verdana, Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<div align="center" style="border:1px solid gray vertical-align: middle">
+    <h1>Welcome to {{ member }} Node</h1>
+    <h2>{{ ip_address }}</h2>
+    <script>
+        var req = new XMLHttpRequest();
+        req.open('GET', document.location, false);
+        req.send(null);
+        var headers = req.getAllResponseHeaders().toLowerCase();
+        document.write(headers);
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+#
+# https://github.com/acassen/keepalived/blob/master/doc/keepalived.conf.SYNOPSIS
+#
+global_defs {
+        # Keepalived process identifier
+        lvs_id haproxy
+}
+
+# Script used to check if HAProxy is running
+vrrp_script check_haproxy {
+        script "killall -0 haproxy"
+        interval 2
+        weight 2
+}
+
+# Virtual interface
+# The priority specifies the order in which the assigned interface to take over in a failover
+vrrp_instance VI_01 {
+        state {{ state }}
+        interface {{ interface }}
+        virtual_router_id {{ virtual_router_id }}
+        priority {{ priority }}
+
+        unicast_src_ip {{ unicast_src_ip }}
+        unicast_peer {
+                {{ unicast_peer }}
+        }
+
+        authentication {
+            auth_type PASS
+            auth_pass password
+        }
+
+        # The virtual ip address shared between the two loadbalancers
+        virtual_ipaddress {
+                {{ virtual_ip_address }}
+        }
+
+        track_script {
+                check_haproxy
+        }
+}
